@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 検索エンジンに載せない（URLを知っている人だけが見る想定） -->
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>晃輝 & 紗生 Profile Book</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Maru+Gothic:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fbf8f4;
+    --paper: #ffffff;
+    --ink: #3d3633;
+    --sub: #8a7f79;
+    --line: #ebe3dc;
+    --accent: #c8a27a;      /* シャンパンゴールド */
+    --groom: #7f97ad;       /* 新郎カラー */
+    --bride: #d49aa0;       /* 新婦カラー */
+    --todo: #fff3c4;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", sans-serif;
+    font-size: 15px;
+    line-height: 1.9;
+    -webkit-text-size-adjust: 100%;
+  }
+  img { max-width: 100%; display: block; }
+  .wrap { max-width: 560px; margin: 0 auto; padding: 0 16px; }
+
+  /* 未記入の箇所（公開前に書き換える） */
+  .todo { background: var(--todo); border-radius: 3px; padding: 0 2px; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    text-align: center;
+    padding: 56px 16px 40px;
+    background:
+      radial-gradient(circle at 20% 10%, #f6e9dc 0, transparent 45%),
+      radial-gradient(circle at 85% 90%, #f3e1e3 0, transparent 45%),
+      var(--bg);
+  }
+  .hero .en {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    color: var(--accent);
+    letter-spacing: .15em;
+    font-size: 15px;
+  }
+  .hero-photo {
+    width: 220px; height: 280px;
+    margin: 20px auto 24px;
+    border-radius: 110px 110px 12px 12px;
+    overflow: hidden;
+    background: #efe6dd;
+    box-shadow: 0 10px 30px rgba(120, 90, 60, .12);
+  }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .hero h1 {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: 28px;
+    letter-spacing: .12em;
+    margin: 0;
+  }
+  .hero h1 .amp { color: var(--accent); font-family: "Cormorant Garamond", serif; margin: 0 .3em; }
+  .hero .date { margin-top: 8px; color: var(--sub); letter-spacing: .1em; }
+  .hero .welcome { margin: 24px auto 0; font-size: 14px; max-width: 26em; }
+
+  /* ---------- 目次 ---------- */
+  nav.toc {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(251, 248, 244, .92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.toc ul {
+    list-style: none; margin: 0 auto; padding: 0 8px;
+    max-width: 560px;
+    display: flex; justify-content: space-around;
+  }
+  nav.toc a {
+    display: block; padding: 10px 6px;
+    color: var(--sub); text-decoration: none; font-size: 12.5px;
+  }
+
+  /* ---------- Section ---------- */
+  section { padding: 48px 0 8px; }
+  .sec-title { text-align: center; margin-bottom: 28px; }
+  .sec-title .en {
+    display: block;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic; font-size: 30px; color: var(--accent); line-height: 1.2;
+  }
+  .sec-title .ja { font-size: 12px; color: var(--sub); letter-spacing: .2em; }
+
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px 20px;
+    margin-bottom: 20px;
+  }
+
+  /* ---------- Profile ---------- */
+  .person { text-align: center; }
+  .person .avatar {
+    width: 130px; height: 130px; margin: 0 auto 12px;
+    border-radius: 50%; overflow: hidden;
+    border: 4px solid var(--paper);
+    outline: 2px solid var(--c);
+    background: #f1ebe5;
+  }
+  .person .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .person .role {
+    display: inline-block; font-size: 11px; letter-spacing: .2em;
+    color: #fff; background: var(--c); border-radius: 99px; padding: 0 12px;
+  }
+  .person .name { font-family: "Shippori Mincho", serif; font-size: 24px; margin: 6px 0 0; letter-spacing: .1em; }
+  .person .kana { font-size: 12px; color: var(--sub); }
+  .groom { --c: var(--groom); }
+  .bride { --c: var(--bride); }
+
+  dl.facts { text-align: left; margin: 18px 0 0; }
+  dl.facts div {
+    display: grid; grid-template-columns: 9.5em 1fr; gap: 8px;
+    padding: 8px 0; border-bottom: 1px dashed var(--line);
+  }
+  dl.facts dt { color: var(--c); font-size: 13px; font-weight: 700; }
+  dl.facts dd { margin: 0; font-size: 14px; }
+
+  /* ---------- Q&A ---------- */
+  .qa { padding: 0; overflow: hidden; }
+  .qa .q {
+    padding: 14px 20px; font-weight: 700; font-size: 14px;
+    background: #f7f1ea; border-bottom: 1px solid var(--line);
+  }
+  .qa .q::before { content: "Q. "; color: var(--accent); font-family: "Cormorant Garamond", serif; font-size: 18px; }
+  .qa .a { display: grid; grid-template-columns: 1fr 1fr; }
+  .qa .a > div { padding: 14px 16px; font-size: 14px; }
+  .qa .a > div + div { border-left: 1px solid var(--line); }
+  .qa .who { display: block; font-size: 11px; font-weight: 700; letter-spacing: .1em; color: var(--c); }
+  .qa .a.single { grid-template-columns: 1fr; }
+
+  /* ---------- History ---------- */
+  .timeline { position: relative; margin: 0; padding: 0 0 0 28px; list-style: none; }
+  .timeline::before {
+    content: ""; position: absolute; left: 8px; top: 6px; bottom: 6px;
+    width: 2px; background: linear-gradient(var(--groom), var(--accent), var(--bride));
+    border-radius: 2px;
+  }
+  .timeline li { position: relative; padding-bottom: 26px; }
+  .timeline li::before {
+    content: ""; position: absolute; left: -26px; top: 8px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--paper); border: 3px solid var(--c, var(--accent));
+  }
+  .timeline .year { font-family: "Cormorant Garamond", serif; font-size: 20px; color: var(--c, var(--accent)); line-height: 1.4; }
+  .timeline .what { font-weight: 700; }
+  .timeline .desc { font-size: 13.5px; color: var(--sub); }
+  .timeline li.both { --c: var(--accent); }
+  .timeline img {
+    margin-top: 10px; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px;
+  }
+
+  /* ---------- Program / Menu ---------- */
+  .program { list-style: none; margin: 0; padding: 0; }
+  .program li {
+    display: grid; grid-template-columns: 4em 1fr; gap: 12px;
+    padding: 10px 0; border-bottom: 1px dashed var(--line);
+  }
+  .program li:last-child { border-bottom: 0; }
+  .program .time { font-family: "Cormorant Garamond", serif; font-size: 18px; color: var(--accent); }
+  .menu { text-align: center; font-family: "Shippori Mincho", serif; }
+  .menu p { margin: 0 0 14px; }
+  .menu small { display: block; font-family: "Zen Maru Gothic", sans-serif; color: var(--sub); font-size: 11px; letter-spacing: .15em; }
+
+  /* ---------- Message ---------- */
+  .message { font-family: "Shippori Mincho", serif; text-align: center; line-height: 2.2; }
+  .message .sign { margin-top: 20px; }
+
+  footer {
+    text-align: center; color: var(--sub); font-size: 12px;
+    padding: 40px 16px 56px;
+  }
+  footer .en { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 18px; color: var(--accent); }
+
+  /* 写真が無いときのプレースホルダー */
+  .ph {
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; height: 100%; min-height: 120px;
+    color: #b9aca1; font-size: 12px; background: #f1ebe5;
+  }
+
+  @media (max-width: 380px) {
+    .qa .a { grid-template-columns: 1fr; }
+    .qa .a > div + div { border-left: 0; border-top: 1px solid var(--line); }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="en">Wedding Profile Book</div>
+  <div class="hero-photo"><img src="images/top.jpg" alt="ふたりの写真" data-ph="メイン写真"></div>
+  <h1>晃輝<span class="amp">&amp;</span>紗生</h1>
+  <div class="date"><span class="todo">2026.○○.○○</span></div>
+  <p class="welcome">
+    本日はお忙しいなか<br>
+    私たちの結婚式にお越しいただき<br>
+    本当にありがとうございます。<br>
+    披露宴が始まるまでのひととき、<br>
+    ふたりのことを少し知っていただけたら嬉しいです。
+  </p>
+</header>
+
+<nav class="toc">
+  <ul>
+    <li><a href="#profile">プロフィール</a></li>
+    <li><a href="#qa">Q&amp;A</a></li>
+    <li><a href="#history">あゆみ</a></li>
+    <li><a href="#today">本日</a></li>
+    <li><a href="#message">メッセージ</a></li>
+  </ul>
+</nav>
+
+<main class="wrap">
+
+  <!-- ================= プロフィール ================= -->
+  <section id="profile">
+    <div class="sec-title"><span class="en">Profile</span><span class="ja">プロフィール</span></div>
+
+    <div class="card person groom">
+      <div class="avatar"><img src="images/groom.jpg" alt="新郎 晃輝" data-ph="新郎写真"></div>
+      <span class="role">GROOM</span>
+      <p class="name"><span class="todo">○○</span> 晃輝</p>
+      <div class="kana"><span class="todo">○○ こうき</span></div>
+      <dl class="facts">
+        <div><dt>誕生日</dt><dd>1999年3月7日</dd></div>
+        <div><dt>出身</dt><dd>千葉県</dd></div>
+        <div><dt>血液型</dt><dd><span class="todo">○型</span></dd></div>
+        <div><dt>お仕事</dt><dd><span class="todo">○○</span></dd></div>
+        <div><dt>趣味</dt><dd><span class="todo">○○、○○</span></dd></div>
+        <div><dt>好きな食べ物</dt><dd><span class="todo">○○</span></dd></div>
+        <div><dt>性格</dt><dd><span class="todo">よく笑う・マイペース など</span></dd></div>
+        <div><dt>紗生の好きなところ</dt><dd><span class="todo">○○なところ</span></dd></div>
+      </dl>
+    </div>
+
+    <div class="card person bride">
+      <div class="avatar"><img src="images/bride.jpg" alt="新婦 紗生" data-ph="新婦写真"></div>
+      <span class="role">BRIDE</span>
+      <p class="name"><span class="todo">○○</span> 紗生</p>
+      <div class="kana"><span class="todo">○○ さき</span></div>
+      <dl class="facts">
+        <div><dt>誕生日</dt><dd>1998年1月2日</dd></div>
+        <div><dt>出身</dt><dd>埼玉県</dd></div>
+        <div><dt>血液型</dt><dd><span class="todo">○型</span></dd></div>
+        <div><dt>お仕事</dt><dd><span class="todo">○○</span></dd></div>
+        <div><dt>趣味</dt><dd><span class="todo">○○、○○</span></dd></div>
+        <div><dt>好きな食べ物</dt><dd><span class="todo">○○</span></dd></div>
+        <div><dt>性格</dt><dd><span class="todo">好奇心旺盛 など</span></dd></div>
+        <div><dt>晃輝の好きなところ</dt><dd><span class="todo">○○なところ</span></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ================= Q&A ================= -->
+  <section id="qa">
+    <div class="sec-title"><span class="en">Q &amp; A</span><span class="ja">ふたりに聞きました</span></div>
+
+    <div class="card qa">
+      <div class="q">相手の第一印象は？</div>
+      <div class="a">
+        <div class="groom"><span class="who">晃輝</span><span class="todo">○○</span></div>
+        <div class="bride"><span class="who">紗生</span><span class="todo">○○</span></div>
+      </div>
+    </div>
+
+    <div class="card qa">
+      <div class="q">結婚の決め手は？</div>
+      <div class="a">
+        <div class="groom"><span class="who">晃輝</span><span class="todo">○○</span></div>
+        <div class="bride"><span class="who">紗生</span><span class="todo">○○</span></div>
+      </div>
+    </div>
+
+    <div class="card qa">
+      <div class="q">プロポーズの言葉は？</div>
+      <div class="a single">
+        <div><span class="todo">「○○○○」</span></div>
+      </div>
+    </div>
+
+    <div class="card qa">
+      <div class="q">ケンカしたらどっちが先に謝る？</div>
+      <div class="a">
+        <div class="groom"><span class="who">晃輝</span><span class="todo">○○</span></div>
+        <div class="bride"><span class="who">紗生</span><span class="todo">○○</span></div>
+      </div>
+    </div>
+
+    <div class="card qa">
+      <div class="q">どんな家庭を築きたい？</div>
+      <div class="a single">
+        <div><span class="todo">○○</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= あゆみ ================= -->
+  <section id="history">
+    <div class="sec-title"><span class="en">Our History</span><span class="ja">ふたりのあゆみ</span></div>
+
+    <ol class="timeline">
+      <li class="bride">
+        <div class="year">1998</div>
+        <div class="what">紗生、埼玉県で誕生</div>
+        <div class="desc">家族の愛情をいっぱいに受けて育ちます。</div>
+      </li>
+      <li class="groom">
+        <div class="year">1999</div>
+        <div class="what">晃輝、千葉県で誕生</div>
+        <div class="desc">よく笑う、ごきげんな赤ちゃんでした。</div>
+      </li>
+      <li class="both">
+        <div class="year">2004</div>
+        <div class="what">それぞれ小学生に</div>
+        <div class="desc">このころ、ふたりはまだ出会っていません。</div>
+      </li>
+      <li class="both">
+        <div class="year">2022</div>
+        <div class="what">ふたりの出会い</div>
+        <div class="desc"><span class="todo">○○</span>がきっかけで出会いました。</div>
+        <img src="images/meet.jpg" alt="出会いのころ" data-ph="出会いのころの写真">
+      </li>
+      <li class="both">
+        <div class="year">2023</div>
+        <div class="what">交際スタート</div>
+        <div class="desc"><span class="todo">○月</span>からお付き合いを開始。</div>
+      </li>
+      <li class="both">
+        <div class="year"><span class="todo">20○○</span></div>
+        <div class="what">プロポーズ</div>
+        <div class="desc"><span class="todo">○○</span>でプロポーズ。</div>
+        <img src="images/propose.jpg" alt="プロポーズ" data-ph="プロポーズの写真">
+      </li>
+      <li class="both">
+        <div class="year">2024</div>
+        <div class="what">入籍</div>
+        <div class="desc">ふたりは夫婦になりました。</div>
+      </li>
+      <li class="both">
+        <div class="year">2026</div>
+        <div class="what">結婚式</div>
+        <div class="desc">そして今日。お越しいただき、ありがとうございます。</div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ================= 本日のご案内 ================= -->
+  <section id="today">
+    <div class="sec-title"><span class="en">Today</span><span class="ja">本日のご案内</span></div>
+
+    <div class="card">
+      <ul class="program">
+        <li><span class="time"><span class="todo">11:00</span></span><span>挙式</span></li>
+        <li><span class="time"><span class="todo">12:00</span></span><span>披露宴 開宴・乾杯</span></li>
+        <li><span class="time"><span class="todo">12:40</span></span><span>ケーキ入刀</span></li>
+        <li><span class="time"><span class="todo">13:20</span></span><span>お色直し・プロフィールムービー</span></li>
+        <li><span class="time"><span class="todo">14:20</span></span><span>花嫁の手紙・謝辞</span></li>
+        <li><span class="time"><span class="todo">14:30</span></span><span>お開き</span></li>
+      </ul>
+    </div>
+
+    <div class="card menu">
+      <p><small>APÉRITIF</small><span class="todo">○○○○</span></p>
+      <p><small>HORS D'ŒUVRE</small><span class="todo">○○○○</span></p>
+      <p><small>POTAGE</small><span class="todo">○○○○</span></p>
+      <p><small>POISSON</small><span class="todo">○○○○</span></p>
+      <p><small>VIANDE</small><span class="todo">○○○○</span></p>
+      <p style="margin:0"><small>DESSERT</small><span class="todo">○○○○</span></p>
+    </div>
+  </section>
+
+  <!-- ================= メッセージ ================= -->
+  <section id="message">
+    <div class="sec-title"><span class="en">Message</span><span class="ja">ゲストのみなさまへ</span></div>
+    <div class="card message">
+      <p>
+        今日という日を迎えられたのは<br>
+        これまで支えてくださった<br>
+        みなさまのおかげです。<br>
+        まだまだ未熟なふたりですが<br>
+        支え合い、笑顔あふれる家庭を<br>
+        築いてまいります。<br>
+        今後とも、どうぞよろしくお願いいたします。
+      </p>
+      <p class="sign">晃輝 ・ 紗生</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="en">Thank you for coming</div>
+  <div>© 2026 Koki &amp; Saki</div>
+</footer>
+
+<script>
+  // 写真ファイルがまだ無い場合は「📷 ○○」の枠を表示
+  document.querySelectorAll('img[data-ph]').forEach(function (img) {
+    function fallback() {
+      var d = document.createElement('div');
+      d.className = 'ph';
+      d.style.aspectRatio = img.closest('.timeline') ? '4 / 3' : '';
+      d.style.borderRadius = img.closest('.timeline') ? '10px' : '';
+      d.style.marginTop = img.closest('.timeline') ? '10px' : '';
+      d.textContent = '📷 ' + img.dataset.ph;
+      img.replaceWith(d);
+    }
+    if (img.complete && img.naturalWidth === 0) fallback();
+    else img.addEventListener('error', fallback);
+  });
+</script>
+</body>
+</html>
