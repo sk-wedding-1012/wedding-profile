@@ -178,6 +178,8 @@
   }
   .program li:last-child { border-bottom: 0; }
   .program .time { font-family: "Cormorant Garamond", serif; font-size: 18px; color: var(--accent); }
+  .program .note { font-size: 12px; color: var(--sub); }
+  .program-note { margin: 12px 0 0; font-size: 12px; color: var(--sub); }
   .menu { text-align: center; font-family: "Shippori Mincho", serif; }
   .menu p { margin: 0 0 14px; }
   .menu small { display: block; font-family: "Zen Maru Gothic", sans-serif; color: var(--sub); font-size: 11px; letter-spacing: .15em; }
@@ -211,7 +213,7 @@
   <div class="en">Wedding Profile Book</div>
   <div class="hero-photo"><img src="images/top.jpg" alt="ふたりの写真" data-ph="メイン写真"></div>
   <h1>晃輝<span class="amp">&amp;</span>紗生</h1>
-  <div class="date"><span class="todo">2026.○○.○○</span></div>
+  <div class="date">2026.10.12 Mon.<br>Accord Laurier</div>
   <p class="welcome">
     本日はお忙しいなか<br>
     私たちの結婚式にお越しいただき<br>
@@ -240,8 +242,8 @@
     <div class="card person groom">
       <div class="avatar"><img src="images/groom.jpg" alt="新郎 晃輝" data-ph="新郎写真"></div>
       <span class="role">GROOM</span>
-      <p class="name"><span class="todo">○○</span> 晃輝</p>
-      <div class="kana"><span class="todo">○○ こうき</span></div>
+      <p class="name">晃輝</p>
+      <div class="kana">こうき</div>
       <dl class="facts">
         <div><dt>誕生日</dt><dd>1999年3月7日</dd></div>
         <div><dt>出身</dt><dd>千葉県</dd></div>
@@ -257,8 +259,8 @@
     <div class="card person bride">
       <div class="avatar"><img src="images/bride.jpg" alt="新婦 紗生" data-ph="新婦写真"></div>
       <span class="role">BRIDE</span>
-      <p class="name"><span class="todo">○○</span> 紗生</p>
-      <div class="kana"><span class="todo">○○ さき</span></div>
+      <p class="name">紗生</p>
+      <div class="kana">さき</div>
       <dl class="facts">
         <div><dt>誕生日</dt><dd>1998年1月2日</dd></div>
         <div><dt>出身</dt><dd>埼玉県</dd></div>
@@ -371,22 +373,29 @@
 
     <div class="card">
       <ul class="program">
-        <li><span class="time"><span class="todo">11:00</span></span><span>挙式</span></li>
-        <li><span class="time"><span class="todo">12:00</span></span><span>披露宴 開宴・乾杯</span></li>
-        <li><span class="time"><span class="todo">12:40</span></span><span>ケーキ入刀</span></li>
-        <li><span class="time"><span class="todo">13:20</span></span><span>お色直し・プロフィールムービー</span></li>
-        <li><span class="time"><span class="todo">14:20</span></span><span>花嫁の手紙・謝辞</span></li>
-        <li><span class="time"><span class="todo">14:30</span></span><span>お開き</span></li>
+        <li><span class="time">9:15</span><span>受付開始</span></li>
+        <li><span class="time">10:00</span><span>挙式（人前式）</span></li>
+        <li><span class="time">10:20</span><span>リボン＆バブルシャワー・集合写真<br><span class="note">ガーデン</span></span></li>
+        <li><span class="time">10:45</span><span>ウェディングパーティ 開宴</span></li>
+        <li><span class="time">11:10</span><span>乾杯</span></li>
+        <li><span class="time">11:15</span><span>キッチンオープン・お写真タイム</span></li>
+        <li><span class="time">11:55</span><span>お色直し・プロフィール映像</span></li>
+        <li><span class="time">12:20</span><span>新郎新婦 再入場</span></li>
+        <li><span class="time">12:35</span><span>デザートビュッフェ<br><span class="note">ガーデン</span></span></li>
+        <li><span class="time">13:05</span><span>花束・記念品贈呈・謝辞</span></li>
+        <li><span class="time">13:30</span><span>お見送り</span></li>
+        <li><span class="time">14:00</span><span>送迎バス出発</span></li>
       </ul>
+      <p class="program-note">※ 時間は目安です。当日の進行により前後することがあります。</p>
     </div>
 
     <div class="card menu">
-      <p><small>APÉRITIF</small><span class="todo">○○○○</span></p>
-      <p><small>HORS D'ŒUVRE</small><span class="todo">○○○○</span></p>
-      <p><small>POTAGE</small><span class="todo">○○○○</span></p>
-      <p><small>POISSON</small><span class="todo">○○○○</span></p>
-      <p><small>VIANDE</small><span class="todo">○○○○</span></p>
-      <p style="margin:0"><small>DESSERT</small><span class="todo">○○○○</span></p>
+      <p><small>AMUSE</small>Welcome to Accord Laurier<br>〜祝宴の始まり〜</p>
+      <p><small>HORS-D'ŒUVRE</small>赤富士鱒　平目　鰤<br>カリフラワーのムース<br>柿のヴィネグレット</p>
+      <p><small>SOUPE</small>季節野菜のポタージュ</p>
+      <p><small>POISSON</small>オマール海老のポワレ<br>千葉県産 蕪のコンビネゾン<br>ソース ヴァンブラン</p>
+      <p><small>VIANDE</small>シェフ特選牛フィレ肉のグリエ<br>ソース・ボルドレーズ</p>
+      <p style="margin:0"><small>DESSERTS</small>アコールローリエ特製デザート</p>
     </div>
   </section>
 
@@ -401,7 +410,8 @@
         まだまだ未熟なふたりですが<br>
         支え合い、笑顔あふれる家庭を<br>
         築いてまいります。<br>
-        今後とも、どうぞよろしくお願いいたします。
+        今後とも<br>
+        どうぞよろしくお願いいたします。
       </p>
       <p class="sign">晃輝 ・ 紗生</p>
     </div>
