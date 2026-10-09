@@ -37,6 +37,8 @@
 
   /* 未記入の箇所（公開前に書き換える） */
   .todo { background: var(--todo); border-radius: 3px; padding: 0 2px; }
+  /* 仮に埋めた箇所（公開前に本人確認） */
+  .check { background: #dcecff; border-radius: 3px; padding: 0 2px; }
 
   /* ---------- Hero ---------- */
   .hero {
@@ -130,7 +132,7 @@
 
   dl.facts { text-align: left; margin: 18px 0 0; }
   dl.facts div {
-    display: grid; grid-template-columns: 9.5em 1fr; gap: 8px;
+    display: grid; grid-template-columns: 7.5em 1fr; gap: 8px;
     padding: 8px 0; border-bottom: 1px dashed var(--line);
   }
   dl.facts dt { color: var(--c); font-size: 13px; font-weight: 700; }
@@ -169,6 +171,10 @@
   .timeline img {
     margin-top: 10px; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px;
   }
+
+  .timeline .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .timeline .pair img { aspect-ratio: 3 / 4; }
+  .qa-img { margin-top: 10px; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; }
 
   /* ---------- Program / Menu ---------- */
   .program { list-style: none; margin: 0; padding: 0; }
@@ -247,12 +253,11 @@
       <dl class="facts">
         <div><dt>誕生日</dt><dd>1999年3月7日</dd></div>
         <div><dt>出身</dt><dd>千葉県</dd></div>
-        <div><dt>血液型</dt><dd><span class="todo">○型</span></dd></div>
-        <div><dt>お仕事</dt><dd><span class="todo">○○</span></dd></div>
-        <div><dt>趣味</dt><dd><span class="todo">○○、○○</span></dd></div>
-        <div><dt>好きな食べ物</dt><dd><span class="todo">○○</span></dd></div>
-        <div><dt>性格</dt><dd><span class="todo">よく笑う・マイペース など</span></dd></div>
-        <div><dt>紗生の好きなところ</dt><dd><span class="todo">○○なところ</span></dd></div>
+        <div><dt>お仕事</dt><dd>情報システム</dd></div>
+        <div><dt>趣味</dt><dd>会社の草野球チーム</dd></div>
+        <div><dt>いま夢中なこと</dt><dd>ゲームや野球観戦。AIを使っていろいろなものを作ること</dd></div>
+        <div><dt>子どものころ</dt><dd>おうちにいるのが好きな、大人しい男の子。親の影響でゲームが大好きでした</dd></div>
+        <div><dt>家族</dt><dd>陽気で明るい父と、面倒見のいい母</dd></div>
       </dl>
     </div>
 
@@ -264,12 +269,11 @@
       <dl class="facts">
         <div><dt>誕生日</dt><dd>1998年1月2日</dd></div>
         <div><dt>出身</dt><dd>埼玉県</dd></div>
-        <div><dt>血液型</dt><dd><span class="todo">○型</span></dd></div>
-        <div><dt>お仕事</dt><dd><span class="todo">○○</span></dd></div>
-        <div><dt>趣味</dt><dd><span class="todo">○○、○○</span></dd></div>
-        <div><dt>好きな食べ物</dt><dd><span class="todo">○○</span></dd></div>
-        <div><dt>性格</dt><dd><span class="todo">好奇心旺盛 など</span></dd></div>
-        <div><dt>晃輝の好きなところ</dt><dd><span class="todo">○○なところ</span></dd></div>
+        <div><dt>お仕事</dt><dd>情報システム</dd></div>
+        <div><dt>趣味</dt><dd>ゲーム、野球観戦、お菓子作り</dd></div>
+        <div><dt>いま夢中なこと</dt><dd>推し活。バンドやキャラクターのほか、身近な人にも「推し」を作って癒やされています</dd></div>
+        <div><dt>子どものころ</dt><dd>外で遊ぶのが大好き。どこでも寝てしまう子でした</dd></div>
+        <div><dt>家族</dt><dd>家族思いでDIYが好きな父と、編み物やお菓子作りが好きな母</dd></div>
       </dl>
     </div>
   </section>
@@ -281,38 +285,53 @@
     <div class="card qa">
       <div class="q">相手の第一印象は？</div>
       <div class="a">
-        <div class="groom"><span class="who">晃輝</span><span class="todo">○○</span></div>
-        <div class="bride"><span class="who">紗生</span><span class="todo">○○</span></div>
+        <div class="groom"><span class="who">晃輝</span>「真面目な子」<br>教育担当として仕事を教える中で、何事にもまじめに取り組む姿が印象に残りました</div>
+        <div class="bride"><span class="who">紗生</span>「推しだ」<br>研修中、パソコントラブルの対応に来てくれる姿に「頼りになるかっこいい先輩。推せる」</div>
       </div>
     </div>
 
     <div class="card qa">
-      <div class="q">結婚の決め手は？</div>
+      <div class="q">相手はどんな人？</div>
       <div class="a">
-        <div class="groom"><span class="who">晃輝</span><span class="todo">○○</span></div>
-        <div class="bride"><span class="who">紗生</span><span class="todo">○○</span></div>
+        <div class="groom"><span class="who">晃輝</span>何事にもまじめに取り組む頑張り屋さん。<br>同じゲームが好きで趣味もぴったり合うから、一緒にいるといつも楽しい！<br>これからもよろしくね</div>
+        <div class="bride"><span class="who">紗生</span>人生すんごく上手に生きている人。<br>気づくといつもリアルスピードでプロスピしてる。<br>ちょっと(？)変な人だけど、尊敬できるところがたくさんあって頼りになる！<br>いつも支えてくれてありがとー</div>
       </div>
     </div>
 
     <div class="card qa">
-      <div class="q">プロポーズの言葉は？</div>
+      <div class="q">子どものころ・学生時代の思い出は？</div>
+      <div class="a">
+        <div class="groom"><span class="who">晃輝</span>高校・大学時代、友人とよく通ったバッティングセンター。勉強以上に熱中していました</div>
+        <div class="bride"><span class="who">紗生</span>父の影響でゲームと野球観戦が好きに。母とはバレンタインにマカロンや生キャラメル作り。忙しい中、夏休みにキャンプや海へ連れていってくれた両親に感謝しています</div>
+      </div>
+    </div>
+
+    <div class="card qa">
+      <div class="q">最初に交換した連絡先は？</div>
       <div class="a single">
-        <div><span class="todo">「○○○○」</span></div>
+        <div>LINEより先に、ゲームのフレンド！同じゲームにはまっているとわかったのがきっかけです。</div>
       </div>
     </div>
 
     <div class="card qa">
-      <div class="q">ケンカしたらどっちが先に謝る？</div>
-      <div class="a">
-        <div class="groom"><span class="who">晃輝</span><span class="todo">○○</span></div>
-        <div class="bride"><span class="who">紗生</span><span class="todo">○○</span></div>
+      <div class="q">ふたりの共通の趣味は？</div>
+      <div class="a single">
+        <div>ゲームとジャイアンツの応援！球場でも、おうちでも観戦しています。<img class="qa-img" src="images/hobby.jpg" alt="球場で観戦するふたり" data-ph="球場の写真"></div>
+      </div>
+    </div>
+
+    <div class="card qa">
+      <div class="q">結婚を意識したのはいつ？</div>
+      <div class="a single">
+        <div>お付き合いを始めたときから。ふたりとも、はじめから結婚を見据えていました。</div>
       </div>
     </div>
 
     <div class="card qa">
       <div class="q">どんな家庭を築きたい？</div>
-      <div class="a single">
-        <div><span class="todo">○○</span></div>
+      <div class="a">
+        <div class="groom"><span class="who">晃輝</span>効率的に時間を作って、自由な時間も楽しめる家庭</div>
+        <div class="bride"><span class="who">紗生</span>お互いを尊重し合える家庭</div>
       </div>
     </div>
   </section>
@@ -326,43 +345,69 @@
         <div class="year">1998</div>
         <div class="what">紗生、埼玉県で誕生</div>
         <div class="desc">家族の愛情をいっぱいに受けて育ちます。</div>
+        <img src="images/baby_bride.jpg" alt="赤ちゃんのころの紗生" data-ph="紗生 赤ちゃんの写真">
       </li>
       <li class="groom">
         <div class="year">1999</div>
         <div class="what">晃輝、千葉県で誕生</div>
         <div class="desc">よく笑う、ごきげんな赤ちゃんでした。</div>
+        <img src="images/baby_groom.jpg" alt="赤ちゃんのころの晃輝" data-ph="晃輝 赤ちゃんの写真">
+      </li>
+      <li class="both">
+        <div class="year">2000</div>
+        <div class="what">それぞれの子ども時代</div>
+        <div class="desc">晃輝はおうちでゲームに夢中、紗生は外で遊ぶのが大好き。晴れ着の七五三に、プーさんと一緒の一枚。</div>
+        <div class="pair">
+          <img src="images/kid_bride.jpg" alt="七五三の紗生" data-ph="紗生 七五三">
+          <img src="images/kid_groom.jpg" alt="プーさんと晃輝" data-ph="晃輝 2歳">
+        </div>
       </li>
       <li class="both">
         <div class="year">2004</div>
         <div class="what">それぞれ小学生に</div>
-        <div class="desc">このころ、ふたりはまだ出会っていません。</div>
+        <div class="desc">2004年に紗生、2005年に晃輝が小学校へ。このころ、ふたりはまだ出会っていません。</div>
       </li>
       <li class="both">
-        <div class="year">2022</div>
+        <div class="year">2016</div>
+        <div class="what">それぞれ大学へ</div>
+        <div class="desc">2016年に紗生、2017年に晃輝が大学へ進学。晃輝は友人とのバッティングセンター通いに熱中し、紗生はその後、大学院へ。</div>
+      </li>
+      <li class="bride">
+        <div class="year">2022.4</div>
+        <div class="what">紗生、入社</div>
+        <div class="desc">3か月の研修中、パソコントラブルの対応に来てくれる先輩を見て「頼りになるかっこいい先輩。推せる」。それが晃輝でした。</div>
+      </li>
+      <li class="both">
+        <div class="year">2022.7</div>
         <div class="what">ふたりの出会い</div>
-        <div class="desc"><span class="todo">○○</span>がきっかけで出会いました。</div>
+        <div class="desc">紗生が晃輝のいる情報システム部に配属され、晃輝が教育担当に。同じゲームにはまっているとわかり、LINEよりも先にゲームのフレンドを交換しました。</div>
         <img src="images/meet.jpg" alt="出会いのころ" data-ph="出会いのころの写真">
       </li>
       <li class="both">
-        <div class="year">2023</div>
+        <div class="year">2022.10.12</div>
         <div class="what">交際スタート</div>
-        <div class="desc"><span class="todo">○月</span>からお付き合いを開始。</div>
+        <div class="desc">ゲームの中だけでなくリアルでも仲良くなり、お付き合いを開始。今日はちょうど4年目の記念日です。</div>
+        <img src="images/dating.jpg" alt="ひまわり畑のふたり" data-ph="ふたりの写真">
       </li>
       <li class="both">
-        <div class="year"><span class="todo">20○○</span></div>
-        <div class="what">プロポーズ</div>
-        <div class="desc"><span class="todo">○○</span>でプロポーズ。</div>
-        <img src="images/propose.jpg" alt="プロポーズ" data-ph="プロポーズの写真">
-      </li>
-      <li class="both">
-        <div class="year">2024</div>
+        <div class="year">2024.10.12</div>
         <div class="what">入籍</div>
-        <div class="desc">ふたりは夫婦になりました。</div>
+        <div class="desc">はじめから結婚を見据えていたふたり。交際2年の記念日に婚姻届を提出して、夫婦になりました。</div>
+        <div class="pair">
+          <img src="images/marriage.jpg" style="object-position: center 15%" alt="入籍の日のふたり" data-ph="入籍の日の写真">
+          <img src="images/propose.jpg" alt="ふたりの指輪" data-ph="指輪の写真">
+        </div>
       </li>
       <li class="both">
-        <div class="year">2026</div>
+        <div class="year">2025</div>
+        <div class="what">ふたりの新居</div>
+        <div class="desc">地鎮祭を経て、ふたりの家が完成しました。</div>
+        <img src="images/home.jpg" alt="新居の前で" data-ph="新居の写真">
+      </li>
+      <li class="both">
+        <div class="year">2026.10.12</div>
         <div class="what">結婚式</div>
-        <div class="desc">そして今日。お越しいただき、ありがとうございます。</div>
+        <div class="desc">交際4年の記念日に、みなさまの前で結婚式を挙げます。お越しいただき、ありがとうございます。</div>
       </li>
     </ol>
   </section>
