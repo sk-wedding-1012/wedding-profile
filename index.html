@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Maru+Gothic:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
 <style>
+  /* カラーテーマ：ベージュ × ゴールド */
   :root {
     --bg: #fbf8f4;
     --paper: #ffffff;
@@ -17,6 +18,7 @@
     --sub: #8a7f79;
     --line: #ebe3dc;
     --accent: #c8a27a;      /* シャンパンゴールド */
+    --beige: #efe4d6;
     --groom: #7f97ad;       /* 新郎カラー */
     --bride: #d49aa0;       /* 新婦カラー */
     --todo: #fff3c4;
@@ -34,301 +36,393 @@
   }
   img { max-width: 100%; display: block; }
   .wrap { max-width: 560px; margin: 0 auto; padding: 0 16px; }
-
-  /* 未記入の箇所（公開前に書き換える） */
   .todo { background: var(--todo); border-radius: 3px; padding: 0 2px; }
-  /* 仮に埋めた箇所（公開前に本人確認） */
-  .check { background: #dcecff; border-radius: 3px; padding: 0 2px; }
+  svg.i { width: 1em; height: 1em; fill: currentColor; vertical-align: -.125em; }
 
-  /* ---------- Hero ---------- */
+  /* ---------- ① トップ ---------- */
   .hero {
-    text-align: center;
-    padding: 56px 16px 40px;
+    position: relative; overflow: hidden;
+    min-height: 92vh; min-height: 92svh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 56px 16px 64px;
     background:
-      radial-gradient(circle at 20% 10%, #f6e9dc 0, transparent 45%),
-      radial-gradient(circle at 85% 90%, #f3e1e3 0, transparent 45%),
+      radial-gradient(circle at 18% 12%, #f6e9dc 0, transparent 42%),
+      radial-gradient(circle at 85% 88%, #f3e1e3 0, transparent 45%),
       var(--bg);
   }
-  .hero .en {
-    font-family: "Cormorant Garamond", serif;
-    font-style: italic;
-    color: var(--accent);
-    letter-spacing: .15em;
-    font-size: 15px;
+  /* 背景の小さな模様 */
+  .hero::before {
+    content: ""; position: absolute; inset: 0; opacity: .5; pointer-events: none;
+    background-image: radial-gradient(var(--accent) 1px, transparent 1.4px);
+    background-size: 22px 22px;
+    -webkit-mask-image: radial-gradient(ellipse at center, transparent 35%, #000 85%);
+            mask-image: radial-gradient(ellipse at center, transparent 35%, #000 85%);
   }
-  .hero-photo {
-    width: 220px; height: 280px;
-    margin: 20px auto 24px;
-    border-radius: 110px 110px 12px 12px;
-    overflow: hidden;
-    background: #efe6dd;
-    box-shadow: 0 10px 30px rgba(120, 90, 60, .12);
-  }
-  .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
-  .hero h1 {
-    font-family: "Shippori Mincho", serif;
-    font-weight: 500;
-    font-size: 28px;
-    letter-spacing: .12em;
-    margin: 0;
-  }
-  .hero h1 .amp { color: var(--accent); font-family: "Cormorant Garamond", serif; margin: 0 .3em; }
-  .hero .date { margin-top: 8px; color: var(--sub); letter-spacing: .1em; }
-  .hero .welcome { margin: 24px auto 0; font-size: 14px; max-width: 26em; }
+  .hero > * { position: relative; }
+  .hero .en { font-family: "Cormorant Garamond", serif; font-style: italic; color: var(--accent); letter-spacing: .2em; font-size: 15px; }
+  .hero .deco { color: var(--accent); font-size: 14px; letter-spacing: .6em; margin: 18px 0 10px; }
+  .hero h1 { font-family: "Shippori Mincho", serif; font-weight: 500; font-size: 34px; letter-spacing: .12em; margin: 0; }
+  .hero h1 .amp { color: var(--accent); font-family: "Cormorant Garamond", serif; margin: 0 .25em; }
+  .hero .date { margin-top: 10px; font-family: "Cormorant Garamond", serif; font-size: 22px; letter-spacing: .15em; }
+  .hero .venue { color: var(--sub); font-size: 13px; letter-spacing: .12em; }
+  .hero .lead { margin: 28px auto 0; font-size: 14px; }
+  .scroll { position: absolute; bottom: 18px; left: 0; right: 0; font-size: 11px; letter-spacing: .3em; color: var(--sub); }
+  .scroll::after { content: ""; display: block; width: 1px; height: 28px; margin: 6px auto 0; background: var(--accent); animation: drip 2s infinite; transform-origin: top; }
+  @keyframes drip { 0% { transform: scaleY(0); } 60% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
 
   /* ---------- 目次 ---------- */
   nav.toc {
     position: sticky; top: 0; z-index: 10;
     background: rgba(251, 248, 244, .92);
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
     border-bottom: 1px solid var(--line);
   }
   nav.toc ul {
-    list-style: none; margin: 0 auto; padding: 0 8px;
-    max-width: 560px;
-    display: flex; justify-content: space-around;
+    list-style: none; margin: 0 auto; padding: 0 8px; max-width: 760px;
+    display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; white-space: nowrap;
   }
-  nav.toc a {
-    display: block; padding: 10px 6px;
-    color: var(--sub); text-decoration: none; font-size: 12.5px;
-  }
+  nav.toc ul::-webkit-scrollbar { display: none; }
+  nav.toc a { display: block; padding: 10px 9px; color: var(--sub); text-decoration: none; font-size: 12.5px; }
 
   /* ---------- Section ---------- */
-  section { padding: 48px 0 8px; }
+  section { padding: 56px 0 8px; scroll-margin-top: 40px; }
   .sec-title { text-align: center; margin-bottom: 28px; }
-  .sec-title .en {
-    display: block;
-    font-family: "Cormorant Garamond", serif;
-    font-style: italic; font-size: 30px; color: var(--accent); line-height: 1.2;
-  }
+  .sec-title .no { display: block; font-family: "Cormorant Garamond", serif; color: var(--accent); font-size: 13px; letter-spacing: .3em; }
+  .sec-title .en { display: block; font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 32px; color: var(--accent); line-height: 1.2; }
   .sec-title .ja { font-size: 12px; color: var(--sub); letter-spacing: .2em; }
+  .card { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 24px 20px; margin-bottom: 20px; }
 
-  .card {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 24px 20px;
-    margin-bottom: 20px;
-  }
+  /* ---------- ② ご挨拶 ---------- */
+  .greeting { font-family: "Shippori Mincho", serif; text-align: center; line-height: 2.2; }
+  .greeting p { margin: 0 0 1.2em; }
+  .greeting p:last-child { margin: 0; }
+  .greeting .sign { margin-top: 18px; font-size: 14px; }
 
-  /* ---------- Profile ---------- */
-  .person { text-align: center; }
+  /* ---------- ③ プロフィール ---------- */
+  .couple { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .person { text-align: center; padding: 20px 10px; }
   .person .avatar {
-    width: 130px; height: 130px; margin: 0 auto 12px;
-    border-radius: 50%; overflow: hidden;
-    border: 4px solid var(--paper);
-    outline: 2px solid var(--c);
-    background: #f1ebe5;
+    width: 112px; height: 112px; margin: 0 auto 10px; border-radius: 50%; overflow: hidden;
+    border: 4px solid var(--paper); outline: 2px solid var(--c); background: #f1ebe5;
   }
   .person .avatar img { width: 100%; height: 100%; object-fit: cover; }
-  .person .role {
-    display: inline-block; font-size: 11px; letter-spacing: .2em;
-    color: #fff; background: var(--c); border-radius: 99px; padding: 0 12px;
-  }
-  .person .name { font-family: "Shippori Mincho", serif; font-size: 24px; margin: 6px 0 0; letter-spacing: .1em; }
-  .person .kana { font-size: 12px; color: var(--sub); }
+  .role { display: inline-block; font-size: 10.5px; letter-spacing: .2em; color: #fff; background: var(--c); border-radius: 99px; padding: 0 12px; }
+  .person .name { font-family: "Shippori Mincho", serif; font-size: 22px; margin: 4px 0 0; letter-spacing: .1em; }
+  .person .kana { font-size: 11px; color: var(--sub); }
+  .person .facts { margin-top: 8px; font-size: 12px; color: var(--sub); line-height: 1.8; }
   .groom { --c: var(--groom); }
   .bride { --c: var(--bride); }
 
-  dl.facts { text-align: left; margin: 18px 0 0; }
-  dl.facts div {
-    display: grid; grid-template-columns: 7.5em 1fr; gap: 8px;
-    padding: 8px 0; border-bottom: 1px dashed var(--line);
-  }
-  dl.facts dt { color: var(--c); font-size: 13px; font-weight: 700; }
-  dl.facts dd { margin: 0; font-size: 14px; }
-
-  /* ---------- Q&A ---------- */
   .qa { padding: 0; overflow: hidden; }
-  .qa .q {
-    padding: 14px 20px; font-weight: 700; font-size: 14px;
-    background: #f7f1ea; border-bottom: 1px solid var(--line);
-  }
-  .qa .q::before { content: "Q. "; color: var(--accent); font-family: "Cormorant Garamond", serif; font-size: 18px; }
+  .qa .q { padding: 13px 18px; font-weight: 700; font-size: 14px; background: #f7f1ea; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; }
+  .qa .q svg { color: var(--accent); flex: none; }
   .qa .a { display: grid; grid-template-columns: 1fr 1fr; }
-  .qa .a > div { padding: 14px 16px; font-size: 14px; }
+  .qa .a > div { padding: 13px 16px; font-size: 14px; }
   .qa .a > div + div { border-left: 1px solid var(--line); }
-  .qa .who { display: block; font-size: 11px; font-weight: 700; letter-spacing: .1em; color: var(--c); }
+  .qa .who { display: block; font-size: 11px; font-weight: 700; letter-spacing: .1em; color: var(--c, var(--accent)); }
   .qa .a.single { grid-template-columns: 1fr; }
+  .qa.game { border-color: #e9c9cc; }
+  .qa.game .q { background: linear-gradient(90deg, #fbeaec, #f7f1ea); }
 
-  /* ---------- History ---------- */
-  .timeline { position: relative; margin: 0; padding: 0 0 0 28px; list-style: none; }
+  /* ---------- ④ 馴れ初め ---------- */
+  .timeline { position: relative; margin: 0; padding: 0 0 0 44px; list-style: none; }
   .timeline::before {
-    content: ""; position: absolute; left: 8px; top: 6px; bottom: 6px;
-    width: 2px; background: linear-gradient(var(--groom), var(--accent), var(--bride));
-    border-radius: 2px;
+    content: ""; position: absolute; left: 15px; top: 8px; bottom: 8px; width: 2px;
+    background: linear-gradient(var(--groom), var(--accent), var(--bride)); border-radius: 2px;
   }
-  .timeline li { position: relative; padding-bottom: 26px; }
-  .timeline li::before {
-    content: ""; position: absolute; left: -26px; top: 8px;
-    width: 14px; height: 14px; border-radius: 50%;
-    background: var(--paper); border: 3px solid var(--c, var(--accent));
+  .timeline li { position: relative; padding-bottom: 30px; }
+  .timeline li:last-child { padding-bottom: 0; }
+  .timeline .dot {
+    position: absolute; left: -44px; top: 0; width: 32px; height: 32px; border-radius: 50%;
+    display: grid; place-items: center; background: var(--paper);
+    border: 2px solid var(--c, var(--accent)); color: var(--c, var(--accent)); font-size: 15px;
   }
-  .timeline .year { font-family: "Cormorant Garamond", serif; font-size: 20px; color: var(--c, var(--accent)); line-height: 1.4; }
+  .timeline .year { font-family: "Cormorant Garamond", serif; font-size: 20px; color: var(--c, var(--accent)); line-height: 1.6; }
   .timeline .what { font-weight: 700; }
   .timeline .desc { font-size: 13.5px; color: var(--sub); }
-  .timeline li.both { --c: var(--accent); }
-  .timeline img {
-    margin-top: 10px; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px;
+  .timeline li.today .dot { background: var(--accent); color: #fff; }
+
+  .teaser { text-align: center; }
+  .teaser-ic { color: var(--bride); font-size: 22px; }
+  .teaser-lead { font-family: "Shippori Mincho", serif; margin: 6px 0 14px; line-height: 2; }
+  .teaser .points { text-align: left; }
+  .teaser-foot { margin: 12px 0 0; font-size: 13px; color: var(--accent); letter-spacing: .1em; }
+
+  /* ---------- ⑤ ギャラリー（スライドショー） ---------- */
+  .slideshow { position: relative; border-radius: 16px; overflow: hidden; background: #2e2926; box-shadow: 0 10px 30px rgba(120, 90, 60, .15); }
+  .slideshow .frame { position: relative; aspect-ratio: 4 / 3; }
+  .slideshow .frame::before {   /* 写真をぼかした背景（縦長の写真でも余白がきれいに） */
+    content: ""; position: absolute; inset: -20px; background: var(--bgimg) center / cover; filter: blur(18px) brightness(.75);
+    transition: background-image .8s;
   }
+  .slideshow img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
+    opacity: 0; transform: scale(1.04); transition: opacity 1.2s ease, transform 6s ease-out;
+  }
+  .slideshow img.on { opacity: 1; transform: scale(1); }
+  .slideshow .nav-btn {
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+    width: 36px; height: 36px; border-radius: 50%; border: 0; cursor: pointer;
+    background: rgba(255, 255, 255, .75); color: var(--ink); font-size: 22px; line-height: 34px; padding: 0;
+  }
+  .slideshow .prev { left: 8px; }
+  .slideshow .next { right: 8px; }
+  .slideshow .count {
+    position: absolute; right: 10px; bottom: 12px; z-index: 2; font-family: "Cormorant Garamond", serif;
+    font-size: 13px; color: #fff; background: rgba(0, 0, 0, .35); border-radius: 99px; padding: 0 10px; letter-spacing: .1em;
+  }
+  .slideshow .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255, 255, 255, .25); z-index: 2; }
+  .slideshow .bar i { display: block; height: 100%; width: 0; background: var(--accent); }
+  .slideshow .bar i.run { width: 100%; transition: width linear; }
 
-  .timeline .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .timeline .pair img { aspect-ratio: 3 / 4; }
-  .qa-img { margin-top: 10px; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; }
+  /* ---------- ⑥ テーマ ---------- */
+  .theme-lead { text-align: center; font-family: "Shippori Mincho", serif; font-size: 18px; margin: 0 0 6px; }
+  .theme-sub { text-align: center; font-size: 13px; color: var(--sub); margin: 0; }
+  .points { list-style: none; margin: 0; padding: 0; }
+  .points li { display: grid; grid-template-columns: 34px 1fr; gap: 10px; padding: 12px 0; border-bottom: 1px dashed var(--line); }
+  .points li:last-child { border-bottom: 0; }
+  .points .ic { width: 34px; height: 34px; border-radius: 50%; background: var(--beige); color: var(--accent); display: grid; place-items: center; }
+  .points b { display: block; font-size: 14px; }
+  .points span.t { font-size: 13px; color: var(--sub); }
+  .swatches { display: flex; justify-content: center; gap: 14px; margin-top: 6px; }
+  .swatches div { text-align: center; font-size: 10.5px; color: var(--sub); }
+  .swatches i { display: block; width: 44px; height: 44px; border-radius: 50%; margin: 0 auto 4px; border: 1px solid var(--line); }
 
-  /* ---------- Program / Menu ---------- */
+  /* ---------- ⑦ 本日・メニュー ---------- */
   .program { list-style: none; margin: 0; padding: 0; }
-  .program li {
-    display: grid; grid-template-columns: 4em 1fr; gap: 12px;
-    padding: 10px 0; border-bottom: 1px dashed var(--line);
-  }
+  .program li { display: grid; grid-template-columns: 4em 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px dashed var(--line); }
   .program li:last-child { border-bottom: 0; }
   .program .time { font-family: "Cormorant Garamond", serif; font-size: 18px; color: var(--accent); }
   .program .note { font-size: 12px; color: var(--sub); }
   .program-note { margin: 12px 0 0; font-size: 12px; color: var(--sub); }
   .menu { text-align: center; font-family: "Shippori Mincho", serif; }
-  .menu p { margin: 0 0 14px; }
-  .menu small { display: block; font-family: "Zen Maru Gothic", sans-serif; color: var(--sub); font-size: 11px; letter-spacing: .15em; }
+  .menu p { margin: 0 0 16px; }
+  .menu p:last-child { margin: 0; }
+  .menu small { display: block; font-family: "Cormorant Garamond", serif; color: var(--accent); font-size: 13px; letter-spacing: .2em; }
 
-  /* ---------- Message ---------- */
+  /* ---------- ⑧ メッセージ ---------- */
   .message { font-family: "Shippori Mincho", serif; text-align: center; line-height: 2.2; }
-  .message .sign { margin-top: 20px; }
+  .message .heart { color: var(--bride); font-size: 20px; }
+  .message .sign { margin-top: 18px; }
 
-  footer {
-    text-align: center; color: var(--sub); font-size: 12px;
-    padding: 40px 16px 56px;
-  }
+  footer { text-align: center; color: var(--sub); font-size: 12px; padding: 40px 16px 56px; }
   footer .en { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 18px; color: var(--accent); }
 
-  /* 写真が無いときのプレースホルダー */
-  .ph {
-    display: flex; align-items: center; justify-content: center;
-    width: 100%; height: 100%; min-height: 120px;
-    color: #b9aca1; font-size: 12px; background: #f1ebe5;
+  /* ---------- 動き ---------- */
+  /* トップ：文字が順番に浮かび上がる */
+  .hero > .en, .hero > .deco, .hero h1, .hero .date, .hero .venue, .hero .lead, .hero .scroll {
+    animation: rise 1.1s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .hero > .deco { animation-delay: .25s; }
+  .hero h1 { animation-delay: .45s; }
+  .hero .date { animation-delay: .75s; }
+  .hero .venue { animation-delay: .9s; }
+  .hero .lead { animation-delay: 1.15s; }
+  .hero .scroll { animation-delay: 1.6s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(16px); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
+  .hero h1 .amp { display: inline-block; animation: amp 3.2s ease-in-out 1.6s infinite; }
+  @keyframes amp { 0%, 100% { transform: none; } 50% { transform: scale(1.18) rotate(-6deg); } }
+
+  /* トップ：ふわふわ浮かぶアイコン */
+  .floaters { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .floaters span { position: absolute; bottom: -40px; opacity: 0; animation: floatUp linear infinite; }
+  .floaters svg { width: 100%; height: 100%; fill: currentColor; }
+  @keyframes floatUp {
+    0%   { transform: translate(0, 0) rotate(0); opacity: 0; }
+    10%  { opacity: .75; }
+    50%  { transform: translate(var(--dx), -55vh) rotate(var(--rot)); }
+    90%  { opacity: .6; }
+    100% { transform: translate(0, -110vh) rotate(calc(var(--rot) * 2)); opacity: 0; }
+  }
+
+  /* スクロールで表示 */
+  .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+  .js .reveal.from-left { transform: translateX(-36px); }
+  .js .reveal.from-right { transform: translateX(36px); }
+  .js .reveal.pop { transform: scale(.92); }
+  .js .reveal.in { opacity: 1; transform: none; }
+
+  /* Q&A：カードのあとに答えが順番に出る */
+  .js .qa .a > div { opacity: 0; transform: translateY(10px); transition: opacity .6s ease, transform .6s ease; }
+  .js .qa.in .a > div { opacity: 1; transform: none; transition-delay: .35s; }
+  .js .qa.in .a > div + div { transition-delay: .6s; }
+  .js .qa .q svg { transition: transform .6s cubic-bezier(.3,1.6,.5,1) .2s; transform: scale(0) rotate(-90deg); }
+  .js .qa.in .q svg { transform: none; }
+
+  /* プロフィール写真：まわる点線のリング */
+  .person .avatar { position: relative; overflow: visible; }
+  .person .avatar img { border-radius: 50%; }
+  .person .avatar::after {
+    content: ""; position: absolute; inset: -11px; border-radius: 50%;
+    border: 1.5px dashed var(--c); opacity: .55;
+    animation: spin 14s linear infinite;
+  }
+  .bride .avatar::after { animation-direction: reverse; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .couple.in .groom { animation: bob 4s ease-in-out 1s infinite; }
+  .couple.in .bride { animation: bob 4s ease-in-out 3s infinite; }
+  @keyframes bob { 0%, 100% { transform: none; } 50% { transform: translateY(-5px); } }
+
+  /* リスト：1行ずつ */
+  .js .points li { opacity: 0; transform: translateX(-14px); transition: opacity .6s ease, transform .6s ease; }
+  .js .in .points li { opacity: 1; transform: none; }
+  .js .in .points li:nth-child(2) { transition-delay: .15s; }
+  .js .in .points li:nth-child(3) { transition-delay: .3s; }
+  .js .in .points li:nth-child(4) { transition-delay: .45s; }
+  .js .swatches i { transform: scale(0); transition: transform .5s cubic-bezier(.3,1.6,.5,1); }
+  .js .in .swatches i { transform: none; }
+  .js .in .swatches div:nth-child(2) i { transition-delay: .1s; }
+  .js .in .swatches div:nth-child(3) i { transition-delay: .2s; }
+  .js .in .swatches div:nth-child(4) i { transition-delay: .3s; }
+
+  /* 本日の進行：時刻が順番に */
+  .js .program li { opacity: 0; transform: translateY(8px); transition: opacity .5s ease, transform .5s ease; }
+  .js .in .program li { opacity: 1; transform: none; }
+
+  /* ハートの鼓動 */
+  .teaser-ic, .message .heart { display: inline-block; animation: beat 1.6s ease-in-out infinite; }
+  @keyframes beat { 0%, 40%, 100% { transform: scale(1); } 15% { transform: scale(1.25); } 28% { transform: scale(1.05); } }
+
+  /* 目次：いま見ている場所 */
+  nav.toc a { position: relative; transition: color .3s; }
+  nav.toc a::after { content: ""; position: absolute; left: 9px; right: 9px; bottom: 5px; height: 2px; border-radius: 2px; background: var(--accent); transform: scaleX(0); transition: transform .35s ease; }
+  nav.toc a.on { color: var(--ink); }
+  nav.toc a.on::after { transform: scaleX(1); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .js .reveal, .js .qa .a > div, .js .points li, .js .program li, .js .qa .q svg, .js .swatches i, 
+    .floaters { display: none; }
   }
 
   @media (max-width: 380px) {
     .qa .a { grid-template-columns: 1fr; }
     .qa .a > div + div { border-left: 0; border-top: 1px solid var(--line); }
+    .person .avatar { width: 92px; height: 92px; }
   }
 </style>
+<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
+<!-- アイコン -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.1 0 3.6 1.1 4.4 2.5h1.8c.8-1.4 2.3-2.5 4.4-2.5 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></symbol>
+  <symbol id="i-game" viewBox="0 0 24 24"><path d="M7 7h10a5 5 0 0 1 4.9 6l-.7 3.6a2.6 2.6 0 0 1-4.5 1.2L14.6 16H9.4l-2.1 1.8a2.6 2.6 0 0 1-4.5-1.2L2.1 13A5 5 0 0 1 7 7zm0 3v1.5H5.5v1.5H7v1.5h1.5V13H10v-1.5H8.5V10H7zm9.5.2a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 2.3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></symbol>
+  <symbol id="i-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7.5 5.2c2.4 2.6 2.4 11 0 13.6M16.5 5.2c-2.4 2.6-2.4 11 0 13.6" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2.5 2.9 6 6.6.8-4.9 4.6 1.3 6.5L12 17.2l-5.9 3.2 1.3-6.5L2.5 9.3l6.6-.8z"/></symbol>
+  <symbol id="i-ring" viewBox="0 0 24 24"><path d="m9 2 3 3 3-3h-6zm3 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16zm0 2.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11z"/></symbol>
+  <symbol id="i-house" viewBox="0 0 24 24"><path d="M12 3 2 11.5h3V21h5.5v-5.5h3V21H19v-9.5h3z"/></symbol>
+  <symbol id="i-flower" viewBox="0 0 24 24"><path d="M12 2a3.5 3.5 0 0 1 3.4 4.4A3.5 3.5 0 1 1 17.6 12a3.5 3.5 0 1 1-2.2 5.6 3.5 3.5 0 1 1-6.8 0A3.5 3.5 0 1 1 6.4 12a3.5 3.5 0 1 1 2.2-5.6A3.5 3.5 0 0 1 12 2zm0 7.2a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6z"/></symbol>
+  <symbol id="i-office" viewBox="0 0 24 24"><path d="M4 21V4h10v4h6v13h-6v-4h-4v4H4zm3-14v2h2V7H7zm4 0v2h2V7h-2zm-4 4v2h2v-2H7zm4 0v2h2v-2h-2zm6 0v2h2v-2h-2zm0 4v2h2v-2h-2z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></symbol>
+  <symbol id="i-cake" viewBox="0 0 24 24"><path d="M12 2c1 1.3 1.5 2.3 1.5 3a1.5 1.5 0 0 1-3 0c0-.7.5-1.7 1.5-3zM11 8h2v3h5a2 2 0 0 1 2 2v2.2c-.9.5-1.6.5-2.5 0-1-.6-2-.6-3 0s-2 .6-3 0-2-.6-3 0-1.6.5-2.5 0V13a2 2 0 0 1 2-2h3V8zM4 17.3c1.2.5 2.3.4 3.5-.2.7-.4 1.3-.4 2 0 1.6.9 3.4.9 5 0 .7-.4 1.3-.4 2 0 1.2.6 2.3.7 3.5.2V22H4v-4.7z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm-1-6h2v3h-2zm0 19h2v3h-2zM1 11h3v2H1zm19 0h3v2h-3zM4.2 5.6l1.4-1.4 2.1 2.1-1.4 1.4zm12.1 12.1 1.4-1.4 2.1 2.1-1.4 1.4zM4.2 18.4l2.1-2.1 1.4 1.4-2.1 2.1zM16.3 6.3l2.1-2.1 1.4 1.4-2.1 2.1z"/></symbol>
+</svg>
+
+<!-- ================= ① トップ ================= -->
 <header class="hero">
+  <div class="floaters" aria-hidden="true"></div>
   <div class="en">Wedding Profile Book</div>
-  <div class="hero-photo"><img src="images/top.jpg" alt="ふたりの写真" data-ph="メイン写真"></div>
+  <div class="deco">❦</div>
   <h1>晃輝<span class="amp">&amp;</span>紗生</h1>
-  <div class="date">2026.10.12 Mon.<br>Accord Laurier</div>
-  <p class="welcome">
-    本日はお忙しいなか<br>
-    私たちの結婚式にお越しいただき<br>
-    本当にありがとうございます。<br>
-    披露宴が始まるまでのひととき、<br>
-    ふたりのことを少し知っていただけたら嬉しいです。
+  <div class="date">2026.10.12</div>
+  <div class="venue">Mon. ／ Accord Laurier</div>
+  <p class="lead">
+    本日はお越しいただき、ありがとうございます。<br>
+    ふたりのことを、少しだけご紹介させてください。
   </p>
+  <div class="scroll">SCROLL</div>
 </header>
 
 <nav class="toc">
   <ul>
+    <li><a href="#greeting">ご挨拶</a></li>
     <li><a href="#profile">プロフィール</a></li>
-    <li><a href="#qa">Q&amp;A</a></li>
-    <li><a href="#history">あゆみ</a></li>
+    <li><a href="#story">あゆみ</a></li>
+    <li><a href="#gallery">ギャラリー</a></li>
+    <li><a href="#theme">テーマ</a></li>
     <li><a href="#today">本日</a></li>
+    <li><a href="#menu">メニュー</a></li>
     <li><a href="#message">メッセージ</a></li>
   </ul>
 </nav>
 
 <main class="wrap">
 
-  <!-- ================= プロフィール ================= -->
-  <section id="profile">
-    <div class="sec-title"><span class="en">Profile</span><span class="ja">プロフィール</span></div>
-
-    <div class="card person groom">
-      <div class="avatar"><img src="images/groom.jpg" alt="新郎 晃輝" data-ph="新郎写真"></div>
-      <span class="role">GROOM</span>
-      <p class="name">晃輝</p>
-      <div class="kana">こうき</div>
-      <dl class="facts">
-        <div><dt>誕生日</dt><dd>1999年3月7日</dd></div>
-        <div><dt>出身</dt><dd>千葉県</dd></div>
-        <div><dt>お仕事</dt><dd>情報システム</dd></div>
-        <div><dt>趣味</dt><dd>会社の草野球チーム</dd></div>
-        <div><dt>いま夢中なこと</dt><dd>ゲームや野球観戦。AIを使っていろいろなものを作ること</dd></div>
-        <div><dt>子どものころ</dt><dd>おうちにいるのが好きな、大人しい男の子。親の影響でゲームが大好きでした</dd></div>
-        <div><dt>家族</dt><dd>陽気で明るい父と、面倒見のいい母</dd></div>
-      </dl>
-    </div>
-
-    <div class="card person bride">
-      <div class="avatar"><img src="images/bride.jpg" alt="新婦 紗生" data-ph="新婦写真"></div>
-      <span class="role">BRIDE</span>
-      <p class="name">紗生</p>
-      <div class="kana">さき</div>
-      <dl class="facts">
-        <div><dt>誕生日</dt><dd>1998年1月2日</dd></div>
-        <div><dt>出身</dt><dd>埼玉県</dd></div>
-        <div><dt>お仕事</dt><dd>情報システム</dd></div>
-        <div><dt>趣味</dt><dd>ゲーム、野球観戦、お菓子作り</dd></div>
-        <div><dt>いま夢中なこと</dt><dd>推し活。バンドやキャラクターのほか、身近な人にも「推し」を作って癒やされています</dd></div>
-        <div><dt>子どものころ</dt><dd>外で遊ぶのが大好き。どこでも寝てしまう子でした</dd></div>
-        <div><dt>家族</dt><dd>家族思いでDIYが好きな父と、編み物やお菓子作りが好きな母</dd></div>
-      </dl>
+  <!-- ================= ② ご挨拶 ================= -->
+  <section id="greeting">
+    <div class="sec-title reveal"><span class="no">01</span><span class="en">Greeting</span><span class="ja">ご挨拶</span></div>
+    <div class="card greeting reveal">
+      <p>ようこそ、ふたりのプロフィールブックへ。</p>
+      <p>ここでは、本人たちに聞いた<br>好きなものや、お互いのことを<br>Q&amp;A形式でまとめました。</p>
+      <p>開宴までの待ち時間や<br>お食事の合間に<br>気軽にのぞいてみてください。</p>
+      <p class="sign">晃輝 ・ 紗生</p>
     </div>
   </section>
 
-  <!-- ================= Q&A ================= -->
-  <section id="qa">
-    <div class="sec-title"><span class="en">Q &amp; A</span><span class="ja">ふたりに聞きました</span></div>
+  <!-- ================= ③ プロフィール ================= -->
+  <section id="profile">
+    <div class="sec-title reveal"><span class="no">02</span><span class="en">Profile</span><span class="ja">新郎新婦プロフィール</span></div>
 
-    <div class="card qa">
-      <div class="q">相手の第一印象は？</div>
+    <div class="couple reveal">
+      <div class="card person groom">
+        <div class="avatar"><img src="images/groom.jpg" alt="新郎 晃輝"></div>
+        <span class="role">GROOM</span>
+        <p class="name">晃輝</p>
+        <div class="kana">こうき</div>
+        <div class="facts">1999.3.7 生まれ<br>千葉県出身</div>
+      </div>
+      <div class="card person bride">
+        <div class="avatar"><img src="images/bride.jpg" alt="新婦 紗生"></div>
+        <span class="role">BRIDE</span>
+        <p class="name">紗生</p>
+        <div class="kana">さき</div>
+        <div class="facts">1998.1.2 生まれ<br>埼玉県出身</div>
+      </div>
+    </div>
+
+    <div class="card qa reveal">
+      <div class="q"><svg class="i"><use href="#i-ball"/></svg>趣味は？</div>
       <div class="a">
-        <div class="groom"><span class="who">晃輝</span>「真面目な子」<br>教育担当として仕事を教える中で、何事にもまじめに取り組む姿が印象に残りました</div>
-        <div class="bride"><span class="who">紗生</span>「推しだ」<br>研修中、パソコントラブルの対応に来てくれる姿に「頼りになるかっこいい先輩。推せる」</div>
+        <div class="groom"><span class="who">晃輝</span>会社の草野球チーム</div>
+        <div class="bride"><span class="who">紗生</span>ゲーム、編み物、お菓子作り</div>
       </div>
     </div>
 
-    <div class="card qa">
-      <div class="q">相手はどんな人？</div>
+    <div class="card qa game reveal">
+      <div class="q"><svg class="i"><use href="#i-game"/></svg>好きなゲームは？</div>
       <div class="a">
-        <div class="groom"><span class="who">晃輝</span>何事にもまじめに取り組む頑張り屋さん。<br>同じゲームが好きで趣味もぴったり合うから、一緒にいるといつも楽しい！<br>これからもよろしくね</div>
-        <div class="bride"><span class="who">紗生</span>人生すんごく上手に生きている人。<br>気づくといつもリアルスピードでプロスピしてる。<br>ちょっと(？)変な人だけど、尊敬できるところがたくさんあって頼りになる！<br>いつも支えてくれてありがとー</div>
+        <div class="groom"><span class="who">晃輝</span>プロスピ（プロ野球スピリッツ）、パルワールド</div>
+        <div class="bride"><span class="who">紗生</span>音ゲー、パズルゲー</div>
       </div>
     </div>
 
-    <div class="card qa">
-      <div class="q">子どものころ・学生時代の思い出は？</div>
+    <div class="card qa reveal">
+      <div class="q"><svg class="i"><use href="#i-star"/></svg>いま夢中なことは？</div>
       <div class="a">
-        <div class="groom"><span class="who">晃輝</span>高校・大学時代、友人とよく通ったバッティングセンター。勉強以上に熱中していました</div>
-        <div class="bride"><span class="who">紗生</span>父の影響でゲームと野球観戦が好きに。母とはバレンタインにマカロンや生キャラメル作り。忙しい中、夏休みにキャンプや海へ連れていってくれた両親に感謝しています</div>
+        <div class="groom"><span class="who">晃輝</span>ゲームや野球観戦。AIを使っていろいろなものを作ること</div>
+        <div class="bride"><span class="who">紗生</span>編み物と、結婚式のあとに食べたいもの探し</div>
       </div>
     </div>
 
-    <div class="card qa">
-      <div class="q">最初に交換した連絡先は？</div>
+    <div class="card qa reveal">
+      <div class="q"><svg class="i"><use href="#i-sun"/></svg>休日の過ごし方は？</div>
       <div class="a single">
-        <div>LINEより先に、ゲームのフレンド！同じゲームにはまっているとわかったのがきっかけです。</div>
+        <div><span class="who">ふたりで</span>ジャイアンツの応援！球場でも、おうちでも観戦しています。</div>
       </div>
     </div>
 
-    <div class="card qa">
-      <div class="q">ふたりの共通の趣味は？</div>
-      <div class="a single">
-        <div>ゲームとジャイアンツの応援！球場でも、おうちでも観戦しています。<img class="qa-img" src="images/hobby.jpg" alt="球場で観戦するふたり" data-ph="球場の写真"></div>
+    <div class="card qa reveal">
+      <div class="q"><svg class="i"><use href="#i-heart"/></svg>相手の好きなところは？</div>
+      <div class="a">
+        <div class="groom"><span class="who">晃輝</span>何事にもまじめに取り組むところ。趣味がぴったり合うから、一緒にいるといつも楽しい！</div>
+        <div class="bride"><span class="who">紗生</span>物事の考え方がすごく尊敬できる。いつも頼りにしてます！</div>
       </div>
     </div>
 
-    <div class="card qa">
-      <div class="q">結婚を意識したのはいつ？</div>
-      <div class="a single">
-        <div>お付き合いを始めたときから。ふたりとも、はじめから結婚を見据えていました。</div>
-      </div>
-    </div>
-
-    <div class="card qa">
-      <div class="q">どんな家庭を築きたい？</div>
+    <div class="card qa reveal">
+      <div class="q"><svg class="i"><use href="#i-ring"/></svg>どんな家庭を築きたい？</div>
       <div class="a">
         <div class="groom"><span class="who">晃輝</span>効率的に時間を作って、自由な時間も楽しめる家庭</div>
         <div class="bride"><span class="who">紗生</span>お互いを尊重し合える家庭</div>
@@ -336,87 +430,87 @@
     </div>
   </section>
 
-  <!-- ================= あゆみ ================= -->
-  <section id="history">
-    <div class="sec-title"><span class="en">Our History</span><span class="ja">ふたりのあゆみ</span></div>
+  <!-- ================= ④ 馴れ初め ================= -->
+  <section id="story">
+    <div class="sec-title reveal"><span class="no">03</span><span class="en">Our Story</span><span class="ja">ふたりのあゆみ</span></div>
 
-    <ol class="timeline">
-      <li class="bride">
-        <div class="year">1998</div>
-        <div class="what">紗生、埼玉県で誕生</div>
-        <div class="desc">家族の愛情をいっぱいに受けて育ちます。</div>
-        <img src="images/baby_bride.jpg" alt="赤ちゃんのころの紗生" data-ph="紗生 赤ちゃんの写真">
-      </li>
-      <li class="groom">
-        <div class="year">1999</div>
-        <div class="what">晃輝、千葉県で誕生</div>
-        <div class="desc">よく笑う、ごきげんな赤ちゃんでした。</div>
-        <img src="images/baby_groom.jpg" alt="赤ちゃんのころの晃輝" data-ph="晃輝 赤ちゃんの写真">
-      </li>
-      <li class="both">
-        <div class="year">2000</div>
-        <div class="what">それぞれの子ども時代</div>
-        <div class="desc">晃輝はおうちでゲームに夢中、紗生は外で遊ぶのが大好き。晴れ着の七五三に、プーさんと一緒の一枚。</div>
-        <div class="pair">
-          <img src="images/kid_bride.jpg" alt="七五三の紗生" data-ph="紗生 七五三">
-          <img src="images/kid_groom.jpg" alt="プーさんと晃輝" data-ph="晃輝 2歳">
-        </div>
-      </li>
-      <li class="both">
-        <div class="year">2004</div>
-        <div class="what">それぞれ小学生に</div>
-        <div class="desc">2004年に紗生、2005年に晃輝が小学校へ。このころ、ふたりはまだ出会っていません。</div>
-      </li>
-      <li class="both">
-        <div class="year">2016</div>
-        <div class="what">それぞれ大学へ</div>
-        <div class="desc">2016年に紗生、2017年に晃輝が大学へ進学。晃輝は友人とのバッティングセンター通いに熱中し、紗生はその後、大学院へ。</div>
-      </li>
-      <li class="bride">
-        <div class="year">2022.4</div>
-        <div class="what">紗生、入社</div>
-        <div class="desc">3か月の研修中、パソコントラブルの対応に来てくれる先輩を見て「頼りになるかっこいい先輩。推せる」。それが晃輝でした。</div>
-      </li>
-      <li class="both">
-        <div class="year">2022.7</div>
-        <div class="what">ふたりの出会い</div>
-        <div class="desc">紗生が晃輝のいる情報システム部に配属され、晃輝が教育担当に。同じゲームにはまっているとわかり、LINEよりも先にゲームのフレンドを交換しました。</div>
-        <img src="images/meet.jpg" alt="出会いのころ" data-ph="出会いのころの写真">
-      </li>
-      <li class="both">
-        <div class="year">2022.10.12</div>
-        <div class="what">交際スタート</div>
-        <div class="desc">ゲームの中だけでなくリアルでも仲良くなり、お付き合いを開始。今日はちょうど4年目の記念日です。</div>
-        <img src="images/dating.jpg" alt="ひまわり畑のふたり" data-ph="ふたりの写真">
-      </li>
-      <li class="both">
-        <div class="year">2024.10.12</div>
-        <div class="what">入籍</div>
-        <div class="desc">はじめから結婚を見据えていたふたり。交際2年の記念日に婚姻届を提出して、夫婦になりました。</div>
-        <div class="pair">
-          <img src="images/marriage.jpg" style="object-position: center 15%" alt="入籍の日のふたり" data-ph="入籍の日の写真">
-          <img src="images/propose.jpg" alt="ふたりの指輪" data-ph="指輪の写真">
-        </div>
-      </li>
-      <li class="both">
-        <div class="year">2025</div>
-        <div class="what">ふたりの新居</div>
-        <div class="desc">地鎮祭を経て、ふたりの家が完成しました。</div>
-        <img src="images/home.jpg" alt="新居の前で" data-ph="新居の写真">
-      </li>
-      <li class="both">
-        <div class="year">2026.10.12</div>
-        <div class="what">結婚式</div>
-        <div class="desc">交際4年の記念日に、みなさまの前で結婚式を挙げます。お越しいただき、ありがとうございます。</div>
-      </li>
-    </ol>
+    <div class="card teaser reveal">
+      <div class="teaser-ic"><svg class="i"><use href="#i-heart"/></svg></div>
+      <p class="teaser-lead">ふたりの出会いと、これまでのあゆみは<br>披露宴の中でご紹介します。</p>
+      <ul class="points">
+        <li><span class="ic"><svg class="i"><use href="#i-chat"/></svg></span><div><b>乾杯の前に</b><span class="t">司会の方から、ふたりのプロフィールをご紹介いただきます。</span></div></li>
+        <li><span class="ic"><svg class="i"><use href="#i-game"/></svg></span><div><b>お色直しのあいだに</b><span class="t">手作りのプロフィール映像を上映します。</span></div></li>
+      </ul>
+      <p class="teaser-foot">続きは、ぜひ会場で。お楽しみに！</p>
+    </div>
   </section>
 
-  <!-- ================= 本日のご案内 ================= -->
-  <section id="today">
-    <div class="sec-title"><span class="en">Today</span><span class="ja">本日のご案内</span></div>
+  <!-- ================= ⑤ ギャラリー ================= -->
+  <section id="gallery">
+    <div class="sec-title reveal"><span class="no">04</span><span class="en">Gallery</span><span class="ja">思い出ギャラリー</span></div>
+    <div class="slideshow reveal" aria-roledescription="スライドショー">
+      <div class="frame">
+        <img data-src="images/gallery/g01.jpg" alt="思い出の写真 1">
+        <img data-src="images/gallery/g02.jpg" alt="思い出の写真 2">
+        <img data-src="images/gallery/g03.jpg" alt="思い出の写真 3">
+        <img data-src="images/gallery/g04.jpg" alt="思い出の写真 4">
+        <img data-src="images/gallery/g05.jpg" alt="思い出の写真 5">
+        <img data-src="images/gallery/g06.jpg" alt="思い出の写真 6">
+        <img data-src="images/gallery/g07.jpg" alt="思い出の写真 7">
+        <img data-src="images/gallery/g08.jpg" alt="思い出の写真 8">
+        <img data-src="images/gallery/g09.jpg" alt="思い出の写真 9">
+        <img data-src="images/gallery/g10.jpg" alt="思い出の写真 10">
+        <img data-src="images/gallery/g11.jpg" alt="思い出の写真 11">
+        <img data-src="images/gallery/g12.jpg" alt="思い出の写真 12">
+        <img data-src="images/gallery/g13.jpg" alt="思い出の写真 13">
+        <img data-src="images/gallery/g14.jpg" alt="思い出の写真 14">
+        <img data-src="images/gallery/g15.jpg" alt="思い出の写真 15">
+        <img data-src="images/gallery/g16.jpg" alt="思い出の写真 16">
+        <img data-src="images/gallery/g17.jpg" alt="思い出の写真 17">
+        <img data-src="images/gallery/g18.jpg" alt="思い出の写真 18">
+        <img data-src="images/gallery/g19.jpg" alt="思い出の写真 19">
+        <img data-src="images/gallery/g20.jpg" alt="思い出の写真 20">
+        <img data-src="images/gallery/g21.jpg" alt="思い出の写真 21">
+        <img data-src="images/gallery/g22.jpg" alt="思い出の写真 22">
+        <img data-src="images/gallery/g23.jpg" alt="思い出の写真 23">
+        <img data-src="images/gallery/g24.jpg" alt="思い出の写真 24">
+        <img data-src="images/gallery/g25.jpg" alt="思い出の写真 25">
+        <img data-src="images/gallery/g26.jpg" alt="思い出の写真 26">
+        <img data-src="images/gallery/g27.jpg" alt="思い出の写真 27">
+        <img data-src="images/gallery/g28.jpg" alt="思い出の写真 28">
+        <img data-src="images/gallery/g29.jpg" alt="思い出の写真 29">
+        <img data-src="images/gallery/g30.jpg" alt="思い出の写真 30">
+      </div>
+      <button class="nav-btn prev" type="button" aria-label="前の写真">&#8249;</button>
+      <button class="nav-btn next" type="button" aria-label="次の写真">&#8250;</button>
+      <div class="count"><span class="cur">1</span> / <span class="all">30</span></div>
+      <div class="bar"><i></i></div>
+    </div>
+  </section>
 
-    <div class="card">
+  <!-- ================= ⑥ テーマ ================= -->
+  <section id="theme">
+    <div class="sec-title reveal"><span class="no">05</span><span class="en">Theme</span><span class="ja">結婚式のテーマ</span></div>
+
+    <div class="card reveal">
+      <p class="theme-lead">ふたりらしく、楽しい一日に</p>
+      <p class="theme-sub">みなさまと一緒に、笑顔いっぱいの時間を過ごせたら嬉しいです。</p>
+    </div>
+
+    <div class="card reveal">
+      <ul class="points">
+        <li><span class="ic"><svg class="i"><use href="#i-heart"/></svg></span><div><b>人前式</b><span class="t">みなさまに見守っていただきながら、結婚を誓います。</span></div></li>
+        <li><span class="ic"><svg class="i"><use href="#i-flower"/></svg></span><div><b>ガーデンでのリボン＆バブルシャワー</b><span class="t">挙式のあとは、ガーデンで集合写真もご一緒に。</span></div></li>
+        <li><span class="ic"><svg class="i"><use href="#i-cake"/></svg></span><div><b>キッチンオープン</b><span class="t">おいしいお食事とお酒を、ゆっくり楽しんでいただけたらうれしいです。</span></div></li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- ================= ⑦ 本日のご案内 ================= -->
+  <section id="today">
+    <div class="sec-title reveal"><span class="no">06</span><span class="en">Today</span><span class="ja">本日のご案内</span></div>
+    <div class="card reveal">
       <ul class="program">
         <li><span class="time">9:15</span><span>受付開始</span></li>
         <li><span class="time">10:00</span><span>挙式（人前式）</span></li>
@@ -426,37 +520,38 @@
         <li><span class="time">11:15</span><span>キッチンオープン・お写真タイム</span></li>
         <li><span class="time">11:55</span><span>お色直し・プロフィール映像</span></li>
         <li><span class="time">12:20</span><span>新郎新婦 再入場</span></li>
-        <li><span class="time">12:35</span><span>デザートビュッフェ<br><span class="note">ガーデン</span></span></li>
         <li><span class="time">13:05</span><span>花束・記念品贈呈・謝辞</span></li>
         <li><span class="time">13:30</span><span>お見送り</span></li>
         <li><span class="time">14:00</span><span>送迎バス出発</span></li>
       </ul>
       <p class="program-note">※ 時間は目安です。当日の進行により前後することがあります。</p>
     </div>
+  </section>
 
-    <div class="card menu">
+  <!-- ================= ⑧ メニュー ================= -->
+  <section id="menu">
+    <div class="sec-title reveal"><span class="no">07</span><span class="en">Menu</span><span class="ja">本日のお料理</span></div>
+    <div class="card menu reveal">
       <p><small>AMUSE</small>Welcome to Accord Laurier<br>〜祝宴の始まり〜</p>
       <p><small>HORS-D'ŒUVRE</small>赤富士鱒　平目　鰤<br>カリフラワーのムース<br>柿のヴィネグレット</p>
       <p><small>SOUPE</small>季節野菜のポタージュ</p>
       <p><small>POISSON</small>オマール海老のポワレ<br>千葉県産 蕪のコンビネゾン<br>ソース ヴァンブラン</p>
       <p><small>VIANDE</small>シェフ特選牛フィレ肉のグリエ<br>ソース・ボルドレーズ</p>
-      <p style="margin:0"><small>DESSERTS</small>アコールローリエ特製デザート</p>
+      <p><small>DESSERTS</small>アコールローリエ特製デザート</p>
     </div>
   </section>
 
-  <!-- ================= メッセージ ================= -->
+  <!-- ================= ⑨ メッセージ ================= -->
   <section id="message">
-    <div class="sec-title"><span class="en">Message</span><span class="ja">ゲストのみなさまへ</span></div>
-    <div class="card message">
+    <div class="sec-title reveal"><span class="no">08</span><span class="en">Message</span><span class="ja">ゲストのみなさまへ</span></div>
+    <div class="card message reveal">
+      <div class="heart"><svg class="i"><use href="#i-heart"/></svg></div>
       <p>
-        今日という日を迎えられたのは<br>
-        これまで支えてくださった<br>
-        みなさまのおかげです。<br>
+        本日はお越しいただき<br>
+        ありがとうございます。<br>
+        楽しんでいただけたら嬉しいです。<br>
         まだまだ未熟なふたりですが<br>
-        支え合い、笑顔あふれる家庭を<br>
-        築いてまいります。<br>
-        今後とも<br>
-        どうぞよろしくお願いいたします。
+        今後ともどうぞよろしくお願いいたします。
       </p>
       <p class="sign">晃輝 ・ 紗生</p>
     </div>
@@ -470,20 +565,101 @@
 </footer>
 
 <script>
-  // 写真ファイルがまだ無い場合は「📷 ○○」の枠を表示
-  document.querySelectorAll('img[data-ph]').forEach(function (img) {
-    function fallback() {
-      var d = document.createElement('div');
-      d.className = 'ph';
-      d.style.aspectRatio = img.closest('.timeline') ? '4 / 3' : '';
-      d.style.borderRadius = img.closest('.timeline') ? '10px' : '';
-      d.style.marginTop = img.closest('.timeline') ? '10px' : '';
-      d.textContent = '📷 ' + img.dataset.ph;
-      img.replaceWith(d);
+  (function () {
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // トップに浮かぶアイコン（ハート・星・花・コントローラー・ボール）
+    var box = document.querySelector('.floaters');
+    if (box && !reduce) {
+      var icons = ['heart', 'star', 'flower', 'game', 'ball', 'heart', 'star'];
+      var colors = ['#d49aa0', '#c8a27a', '#7f97ad', '#e3b9a0'];
+      for (var i = 0; i < 16; i++) {
+        var sp = document.createElement('span');
+        var size = 10 + Math.random() * 14;
+        sp.style.left = (Math.random() * 96) + '%';
+        sp.style.width = sp.style.height = size + 'px';
+        sp.style.color = colors[i % colors.length];
+        sp.style.animationDuration = (11 + Math.random() * 10) + 's';
+        sp.style.animationDelay = (-Math.random() * 18) + 's';
+        sp.style.setProperty('--dx', (Math.random() * 60 - 30) + 'px');
+        sp.style.setProperty('--rot', (Math.random() * 80 - 40) + 'deg');
+        sp.innerHTML = '<svg><use href="#i-' + icons[i % icons.length] + '"/></svg>';
+        box.appendChild(sp);
+      }
     }
-    if (img.complete && img.naturalWidth === 0) fallback();
-    else img.addEventListener('error', fallback);
-  });
+
+    // ギャラリー：写真が少しずつ切り替わるスライドショー
+    (function () {
+      var box = document.querySelector('.slideshow');
+      if (!box) return;
+      var imgs = box.querySelectorAll('img'), frame = box.querySelector('.frame');
+      var cur = box.querySelector('.cur'), bar = box.querySelector('.bar i');
+      var n = imgs.length, i = 0, timer = null, WAIT = 4000;
+      box.querySelector('.all').textContent = n;
+      function load(k) { var im = imgs[(k + n) % n]; if (!im.src) im.src = im.dataset.src; return im; }
+      function show(k) {
+        i = (k + n) % n;
+        imgs.forEach(function (im) { im.classList.remove('on'); });
+        var im = load(i); im.classList.add('on');
+        frame.style.setProperty('--bgimg', 'url("' + im.dataset.src + '")');
+        cur.textContent = i + 1;
+        load(i + 1);   // 次の写真を先読み
+        bar.classList.remove('run'); bar.style.transitionDuration = '0s'; void bar.offsetWidth;
+        if (!reduce) { bar.style.transitionDuration = WAIT + 'ms'; bar.classList.add('run'); }
+      }
+      function play() { stop(); if (!reduce) timer = setInterval(function () { show(i + 1); }, WAIT); }
+      function stop() { if (timer) clearInterval(timer); timer = null; }
+      box.querySelector('.prev').addEventListener('click', function () { show(i - 1); play(); });
+      box.querySelector('.next').addEventListener('click', function () { show(i + 1); play(); });
+      // スワイプで切り替え
+      var x0 = null;
+      box.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+      box.addEventListener('touchend', function (e) {
+        if (x0 === null) return;
+        var dx = e.changedTouches[0].clientX - x0; x0 = null;
+        if (Math.abs(dx) > 40) { show(i + (dx < 0 ? 1 : -1)); play(); }
+      });
+      // 画面に見えているときだけ自動で進む
+      show(0);
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (en) { en[0].isIntersecting ? play() : stop(); }).observe(box);
+      } else { play(); }
+    })();
+
+    // Q&A カードは左右交互にスライドイン
+    document.querySelectorAll('#profile .qa').forEach(function (c, i) {
+      c.classList.add(i % 2 ? 'from-right' : 'from-left');
+    });
+    document.querySelectorAll('.couple, .slideshow, .teaser').forEach(function (c) { c.classList.add('pop'); });
+    // 進行表は1行ずつ
+    document.querySelectorAll('.program li').forEach(function (li, i) { li.style.transitionDelay = (i * 0.06) + 's'; });
+
+    // 目次：いま見ているセクションに下線
+    var links = {};
+    var ul = document.querySelector('nav.toc ul');
+    document.querySelectorAll('nav.toc a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+
+    // スクロールで表示
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (e) { io.observe(e); });
+
+    var nav = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        Object.keys(links).forEach(function (k) { links[k].classList.toggle('on', k === en.target.id); });
+        var a = links[en.target.id];
+        if (a && ul.scrollTo) ul.scrollTo({ left: a.parentNode.offsetLeft - 40, behavior: 'smooth' });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    document.querySelectorAll('main section').forEach(function (s) { nav.observe(s); });
+  })();
 </script>
 </body>
 </html>
