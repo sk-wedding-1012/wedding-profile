@@ -592,7 +592,14 @@
     (function () {
       var box = document.querySelector('.slideshow');
       if (!box) return;
-      var imgs = box.querySelectorAll('img'), frame = box.querySelector('.frame');
+      var frame = box.querySelector('.frame');
+      // 開くたびに順番をシャッフル（新郎側・新婦側の写真が偏らないように）
+      var list = Array.prototype.slice.call(frame.querySelectorAll('img'));
+      for (var k = list.length - 1; k > 0; k--) {
+        var r = Math.floor(Math.random() * (k + 1)), t = list[k]; list[k] = list[r]; list[r] = t;
+      }
+      list.forEach(function (im) { frame.appendChild(im); });
+      var imgs = frame.querySelectorAll('img');
       var cur = box.querySelector('.cur'), bar = box.querySelector('.bar i');
       var n = imgs.length, i = 0, timer = null, WAIT = 4000;
       box.querySelector('.all').textContent = n;
